@@ -2,7 +2,7 @@
 
 <h3>Установка</h3>
 
-1. Скачайте [плагин]() и распакуйте его в корневую директорию вашего сайта
+1. Скачайте [плагин](https://github.com/Invoice-LLC/Invoice.Module.OctoberCMS/archive/master.zip) и распакуйте его в корневую директорию вашего сайта
 2. Выполните команду в консоли:
 ```shell script
 php artisan plugin:refresh invoice.payment

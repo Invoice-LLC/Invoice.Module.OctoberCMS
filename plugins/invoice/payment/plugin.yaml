@@ -1,0 +1,5 @@
+plugin:
+  name: 'invoice.payment::lang.plugin.name'
+  description: 'invoice.payment::lang.plugin.description'
+  author: 'Invoice'
+  icon: oc-icon-star

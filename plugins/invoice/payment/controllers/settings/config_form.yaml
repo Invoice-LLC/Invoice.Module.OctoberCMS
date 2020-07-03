@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Setting
+
+# Model Form Field configuration
+form: $/invoice/payment/models/setting/fields.yaml
+
+# Model Class name
+modelClass: Invoice\Payment\Models\Setting
+
+# Default redirect location
+defaultRedirect: invoice/payment/settings
+
+# Create page
+create:
+    title: Create Setting
+    redirect: invoice/payment/settings/update/:id
+    redirectClose: invoice/payment/settings
+
+# Update page
+update:
+    title: Edit Setting
+    redirect: invoice/payment/settings
+    redirectClose: invoice/payment/settings
+
+# Preview page
+preview:
+    title: Preview Setting

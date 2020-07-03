@@ -1,0 +1,18 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+tabs:
+    fields:
+        login:
+            label: "Login"
+            type: text
+            tab: "General"
+        api_key:
+            label: "API Key"
+            type: text
+            tab: "General"
+        default_terminal_name:
+            label: "Default Terminal Name"
+            type: text
+            tab: "General"

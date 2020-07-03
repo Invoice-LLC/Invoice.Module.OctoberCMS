@@ -1,5 +1,10 @@
 <h1>Invoice Payment Module</h1>
 
+<h3>Требования</h3>
+1. Установленный October CMS
+2. Установленный модуль Shopaholic
+3. Установленный модуль Orders Shopaholic
+
 <h3>Установка</h3>
 
 1. Скачайте [плагин](https://github.com/Invoice-LLC/Invoice.Module.OctoberCMS/archive/master.zip) и распакуйте его в корневую директорию вашего сайта

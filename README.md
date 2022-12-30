@@ -1,7 +1,7 @@
 <h1>Invoice Payment Module</h1>
 
 <h3>Требования</h3>
-1. Установленный October CMS<br>
+1. Установленный October CMS (так же подходит для Winter CMS)<br>
 2. Установленный модуль Shopaholic<br>
 3. Установленный модуль Orders Shopaholic<br>
 

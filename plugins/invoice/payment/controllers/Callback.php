@@ -12,25 +12,26 @@ use Lovata\OrdersShopaholic\Models\PaymentMethod;
 
 class Callback extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $postData = file_get_contents('php://input');
         $notification = json_decode($postData, true);
 
         $type = $notification["notification_type"];
-        $id = $notification["order"]["id"];
+        $id = strstr($notification["order"]["id"], "-", true);
 
         $signature = $notification["signature"];
 
-        if($signature != $this->getSignature($notification["id"], $notification["status"], Setting::get("api_key"))) {
+        if ($signature != $this->getSignature($notification["id"], $notification["status"], Setting::get("api_key"))) {
             return "Wrong signature";
         }
 
-        if($type == "pay") {
-            if($notification["status"] == "successful") {
+        if ($type == "pay") {
+            if ($notification["status"] == "successful") {
                 $this->pay($id);
                 return "payment successful";
             }
-            if($notification["status"] == "error") {
+            if ($notification["status"] == "error") {
                 $this->error($id);
                 return "payment failed";
             }
@@ -39,12 +40,14 @@ class Callback extends Controller
         return "null";
     }
 
-    public function pay($id) {
+    public function pay($id)
+    {
         $order = $this->getOrder($id);
         Db::table('lovata_orders_shopaholic_orders')->where('id', $order->id)->update(['status_id' => $this->getSuccessStatus($order)]);
     }
 
-    public function error($id) {
+    public function error($id)
+    {
         $order = $this->getOrder($id);
         Db::table('lovata_orders_shopaholic_orders')->where('id', $order->id)->update(['status_id' => $this->getErrorStatus($order)]);
     }
@@ -66,7 +69,8 @@ class Callback extends Controller
      * @param $order \Lovata\OrdersShopaholic\Models\Order
      * @return int
      */
-    public function getSuccessStatus($order) {
+    public function getSuccessStatus($order)
+    {
         /**
          *@var $pm PaymentMethod
          */
@@ -74,9 +78,10 @@ class Callback extends Controller
         return $pm->after_status_id;
     }
 
-    public function getPaymentMethod($id) {
+    public function getPaymentMethod($id)
+    {
         $pm = Db::table('lovata_orders_shopaholic_payment_methods')->where('id', $id)->first();
-        if($pm == null or empty($pm)) {
+        if ($pm == null or empty($pm)) {
             die("Invalid order");
         }
         return $pm;
@@ -86,15 +91,17 @@ class Callback extends Controller
      * @param $id
      * @return \Lovata\OrdersShopaholic\Models\Order
      */
-    public function getOrder($id) {
+    public function getOrder($id)
+    {
         $order = Db::table('lovata_orders_shopaholic_orders')->where('secret_key', $id)->first();
-        if($order == null or empty($order)) {
+        if ($order == null or empty($order)) {
             die("not found");
         }
         return $order;
     }
 
-    public function getSignature($id, $status, $key) {
-        return md5($id.$status.$key);
+    public function getSignature($id, $status, $key)
+    {
+        return md5($id . $status . $key);
     }
 }
